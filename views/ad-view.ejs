@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <style>
+        .formdes{
+            padding: 2%;
+            
+        width: 30%;
+        margin-top: 4%;
+        align-items: center;
+        margin-left: 35%;
+        border-radius: 20px ;
+        height: 40rem;
+box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+
+background-color: rgba(255, 255, 255, .15);
+
+backdrop-filter: blur(5px);
+        }
+
+        body{
+        background: url('https://wallpaperaccess.com/full/2502641.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+    </style>
+    <title>
+        ad image
+    </title>
+    <body>
+        <form class="formdes">
+            <label >Name</label>
+     <h1 style="font-family: sans-serif;"> <center><%=data.name%></center></h1>
+     <label>Description</label>
+     <p style="font-family: sans-serif;"><center><%=data.description%></center></p>
+     <center><img src=<%= imageurl %> />  </center>
+    
+    </form>
+    </body>
+</head>
+</html>
