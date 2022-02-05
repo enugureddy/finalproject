@@ -13,6 +13,15 @@ function loginadmin(email,password){
     var userData=collection.findOne(filter)
     return userData;
 }
+function getbyid(id)
+{
+    var collection=db.collection("add")
+    var filter={
+        '_id':mongodb.ObjectId(id)
+    }
+    var ad =collection.findOne(filter)
+    return ad
+}
 
 var dbController = {
     connection : function(){
@@ -26,6 +35,22 @@ var dbController = {
             console.log("DB Connected from admin")
         })
     },
+    
+    viewmemberadds : function(id,res){
+        var collection = db.collection("add")
+       // var vid = mongodb.ObjectId(id)
+       var filter ={
+                  "id":id
+       }
+      
+        collection.find(filter).toArray(function(err,result){
+            if(err){
+                console.log("Err in view")
+                return
+            }
+            res.render("admin-viewadds", {title: "view tasks", addData : result})
+        })
+    },
     viewmembers : function(res){
         var collection = db.collection("member")
         collection.find().toArray(function(err,result){
@@ -36,21 +61,49 @@ var dbController = {
             res.render("admin-viewmember", {title: "view page", data : result})
         })
     },
-    viewmemberadds : function(id,res){
+    request : function(id,res){
         var collection = db.collection("add")
-       // var vid = mongodb.ObjectId(id)
-        var filter = {
-            "id" : id
+        var filter={
+            "_id":mongodb.ObjectId(id)
         }
+       var adddata=null
         collection.find(filter).toArray(function(err,result){
             if(err){
                 console.log("Err in view")
                 return
             }
-            res.render("admin-viewadds", {title: "view tasks", addData : result})
+            result.forEach(element=>{
+                adddata=element
+
+            })
+            var memid=adddata.id
+            console.log(memid)
+
+            var memcoll=db.collection("member")
+            var filter2={
+            "_id":mongodb.ObjectId(memid)
+
+            }
+            console.log(filter2)
+          //  var memdata
+            memcoll.find(filter2).toArray(function(err,output){
+                if(err){
+                    console.log("Err in view")
+                    return
+                }
+              output.forEach(element=>{
+                    memdata=element
+    
+               })
+             console.log("output",output)
+             console.log("memdata",memdata)
+            res.render("admin-request", {title: "view page", mdata:memdata})
+            })
+            console.log("result",result)
+            
         })
     },
 
 }
 
-    module.exports = {dbController,loginadmin}
+    module.exports = {dbController,loginadmin,getbyid}

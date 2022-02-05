@@ -14,11 +14,18 @@ module.exports=function(member){
 
    //do the action from the form
    member.route("/uploadaction").post(controller.uploadAction)
+
    member.route("/delete/:id").get(controller.delete)
+
+
    member.route("/updatedet/:id").get(controller.updatedet)
+
    member.route("/updateimg/:id").get(controller.updateimg)
+
    member.route("/updateimgpost").post(controller.updateimgpost)
+
    member.route("/updatedetpost").post(controller.updatedetpost)
+   
    member.route("/dadd").get(controller.dadd)
    member.route("/dacc").get(controller.dacc)
    member.route("/uacc").get(controller.uacc)

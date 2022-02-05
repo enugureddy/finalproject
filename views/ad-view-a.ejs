@@ -29,12 +29,14 @@ backdrop-filter: blur(5px);
     </title>
     <body>
         <form class="formdes">
-           
+            
      <h1 style="font-family: sans-serif;"> <center><%=data.name%></center></h1>
-     
+    
      <h2 style="font-family: sans-serif;"><center><%=data.description%></center></h2>
-      <center><img src=<%= imageurl %> />  </center>
-     
+     <% var imageurl = "/media/"+data._id+"."+data.image%>
+                        <img src=<%= imageurl %>  style="width:200px;height:200px;"/>
+                       
+    <!--  <center><img src=<%= imageurl %> />  </center> -->
     
     </form>
     </body>
