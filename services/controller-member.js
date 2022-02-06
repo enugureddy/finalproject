@@ -17,10 +17,10 @@ var controller ={
 
         var data = await dbController.loginmember(email, password)
         currlogin = data
-        currentloginuser=data._id.toString()
+      
         if (data != null)
         {   
-           
+            currentloginuser=data._id.toString()
            // res.render("member-viewadds", {title : "Member Home Page", data : data})
 
             res.redirect("/member/viewadds")
@@ -79,10 +79,10 @@ var controller ={
        //     res.render("member-login", {title : "user Login Page"})
        // }
     },
-    updateimg : function(req, res){
+    updateimg : async function(req, res){
         // if( req.session.loginuserId )
             var id=req.params.id
-             res.render("staff-upload-view1", {title : "Form with upload",id:id})
+         await    res.render("staff-upload-view1", {title : "Form with upload",id:id})
        //  }
         // else
         // {
@@ -101,10 +101,11 @@ var controller ={
     await res.redirect("/member/viewadds")
     },
     updateimgpost : async function(req, res){
-        var id=req.body.id
+        //var cid = req.body.id
+        console.log("id:",)
         console.log("inside controller function img")
         var form = new formidable.IncomingForm();
-        dbController.insertimg(req, form,id) 
+        dbController.insertimg(req, form,) 
       //  var data = currlogin
         // req.session.loginuserId 
         // req.session.loginuserEmail 
@@ -156,6 +157,7 @@ var id=req.params.id
      res.render("member-viewadds")
  }
 },
+
 
 
     logout : function(req, res){

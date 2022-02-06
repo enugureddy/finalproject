@@ -31,6 +31,7 @@ module.exports=function(member){
    member.route("/uacc").get(controller.uacc)
    member.route("/uacc").post(controller.uaccpost)
    member.route("/view/:id").get(controller.view)
+  
     member.route('/logout').get(controller.logout)
 
 }
