@@ -4,6 +4,12 @@ const emailController = require("./mail-service")
 dbController.dbController.connection()
 
 var controller ={
+
+    enter : function(req,res){
+        // var id = req.params.id
+        // dbController.dbController.viewmemberadds(res)
+        res.render("guest-login")
+     },
   
     login : function(req,res){
         // var id = req.params.id
@@ -32,6 +38,12 @@ var controller ={
             emailController.send(email,"thirumalreddyenugu@gmail.com","Action required for ad- Admin",mailbody)
             res.redirect("/guest")
 
+        },
+        logout : function(req, res){
+            req.session.destroy( function(err){
+                console.log("session destroyed")
+            })  
+            res.render("guest-login", {title : "Guest Login Page"})
         },
     }
 

@@ -86,7 +86,7 @@ function insertAd(req, form,id)
     })
 
 }
-function insertimg(req, form,id)
+function insertimg(req, form,cid)
 {
     console.log("inside controller img")
     //getting collection
@@ -98,12 +98,13 @@ function insertimg(req, form,id)
         var oldPath = files.adimage.filepath; //temp location 
         var extension = files.adimage.originalFilename.split('.').pop()
 
-        var adId = id //new id generated //_id.exten ::: for eg: 123123123123.png
+        var adId = fields.id //new id generated //_id.exten ::: for eg: 123123123123.png
         //u want to show a full details of ad
         //ip: ad._id
         //u can get the advertise detail from db using ad id
         //retrieved ad, u can get ad.image (extension)
         //_id.extension
+        console.log("addid:",adId)
 
         var newFileNameName = "./public/media/" + adId + "." + extension;
 
@@ -119,9 +120,11 @@ function insertimg(req, form,id)
                 if(err)
                 {
                     console.log("Error in upload2 : ", err)
+                    console.log(newFileNameName)
                     return   
                 }
-                console.log("image updated")
+                console.log("image updated at:",newFileNameName)
+
             })
         })
 
@@ -350,6 +353,7 @@ var dbController = {
                 console.log("Err in update : ", err)
                 return
             }
+            console.log("user updated")
             
         })
     },

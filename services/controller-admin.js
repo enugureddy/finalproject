@@ -57,6 +57,10 @@ var controller ={
             res.redirect("/admin/viewmemberadds/:id")
 
         },
+        back : function(req, res){
+   
+            res.redirect("/viewmembers")
+        },
     
 
     logout : function(req, res){
